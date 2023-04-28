@@ -156,24 +156,24 @@ export const getStaticProps = async () => {
     };
 };
 
-export async function getStaticPath() {
+// export async function getStaticPath() {
 
-    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/1`);
-    const data = await response.json();
+//     const response = await fetch(`https://jsonplaceholder.typicode.com/todos/1`);
+//     const data = await response.json();
 
-    const paths = data?.map((post: Post) => {
-        return {
-            params: { pid: `${post.id}` },
-        };
-    });
+//     const paths = data?.map((post: Post) => {
+//         return {
+//             params: { pid: `${post.id}` },
+//         };
+//     });
 
-    // const pathsData = paths.splice(0, 30);
+//     // const pathsData = paths.splice(0, 30);
 
-    return {
-        paths,
-        fallback: true,
-    };
-}
+//     return {
+//         paths,
+//         fallback: true,
+//     };
+// }
 
 // export async function getServerSideProps(context: any) {
 //     const res = await fetch('https://api.github.com/repos/vercel/next.js')

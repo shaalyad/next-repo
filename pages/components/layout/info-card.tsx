@@ -60,7 +60,7 @@ const InfoCard: NextPage<Props> = (props) => {
                                     transform="uppercase"
                                 >
                                     <Link href={{
-                                        pathname: '/components/enrollcourse',
+                                        pathname: 'enroll-course-page/enrollcourse',
                                         query: { courseType: label1 }
                                     }}>Enroll this course</Link>
                                 </Text>
