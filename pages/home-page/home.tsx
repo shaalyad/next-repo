@@ -1,13 +1,30 @@
-
-import styles from '@/styles/Home.module.css'
 import { Button, Container, Navbar, Text, Grid, Col } from '@nextui-org/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import InfoCard from './InfoCard'
+import React, { useEffect, useState } from 'react'
+import InfoCard from '../components/layout/info-card';
+import styles from './home.module.css';
+
+
 
 export default function Index() {
+   
     const router = useRouter();
-    const username = router.query.username;
+    console.log(router, 'query params')
+    let { username } = router.query;
+
+    const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+        console.log(`useEffect triggered`, username);
+        router.isReady ? setSearchQuery(username as string) : console.log('router is not ready');
+    }, [username]);
+
+    const logout = () => {
+        router.replace('/', undefined, { shallow: true });
+    }
+
+
     return (
         <Container>
             {/* Navbar */}
@@ -27,11 +44,15 @@ export default function Index() {
                 {/* <Navbar.Item>
               <Button auto flat> */}
                 {username ? (
-                    <p>Welcome {username}</p>
+                    <Navbar.Content>
+                        <p>Welcome {username}</p>
+                        <Navbar.Link onClick={() => logout()}  >Logout</Navbar.Link>
+                    </Navbar.Content>
+
                 ) : (
                     <Navbar.Content className={styles.login_signup_wrapper}>
-                        <Navbar.Link href="/components/login">Login</Navbar.Link>
-                        <Navbar.Link href="/components/signup" >
+                        <Navbar.Link href="login-page/login">Login</Navbar.Link>
+                        <Navbar.Link href="signup-page/signup" >
                             SignUp
                         </Navbar.Link>
                     </Navbar.Content>

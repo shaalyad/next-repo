@@ -11,10 +11,12 @@
 .btn_wrapper {
     display: flex;
 }
+
 .btn_wrapper2 {
     display: block;
     margin-top: auto;
 }
+
 .enroll_btn {
     padding: 15px;
     margin-left: 800px;
@@ -23,11 +25,11 @@
     cursor: pointer;
 }
 
-.detail_wrapper{
+.detail_wrapper {
     margin-top: 20px;
 }
 
-.back_arrow{
+.back_arrow {
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -35,7 +37,6 @@
     margin-top: 10px;
 }
 
-.header_wrapper
-{
+.header_wrapper {
     display: flex;
 }

@@ -1,7 +1,8 @@
 
 import type { NextPage } from "next";
 import { Card, Text, Row, Col, Button } from "@nextui-org/react";
-import styles from './infocard.module.css'
+import styles from '../layout/info-card.module.css';
+
 
 import { link } from "fs";
 import Link from "next/link";
@@ -16,23 +17,6 @@ interface Props {
     link: any;
 
 }
-
-
-// const handleClick = (e: any, path: any) => {
-//     e.preventDefault()
-
-//     if (path === "/about") {
-//         console.log("I clicked on the About Page");
-//         router.pathname = ''
-//         // then you can: 
-//         // router.push(path)
-//     }
-//     if (path === "/posts") {
-//         console.log("I clicked on the Posts Page");
-//         // then you can: 
-//         // router.push(path)
-//     }
-// };
 
 const InfoCard: NextPage<Props> = (props) => {
     const { title, label1, imageURL, studentCount, link } = props;
@@ -49,7 +33,7 @@ const InfoCard: NextPage<Props> = (props) => {
                         </Text>
                     </Col>
                 </Card.Header>
-                <img className={styles.image} src={imageURL}/>
+                <img className={styles.image} src={imageURL} />
             </Link>
 
             <Card.Footer
@@ -77,7 +61,7 @@ const InfoCard: NextPage<Props> = (props) => {
                                 >
                                     <Link href={{
                                         pathname: '/components/enrollcourse',
-                                        query: {courseType : label1}
+                                        query: { courseType: label1 }
                                     }}>Enroll this course</Link>
                                 </Text>
                             </Button>

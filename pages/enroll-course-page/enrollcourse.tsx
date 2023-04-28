@@ -1,17 +1,19 @@
 import { Grid, Link } from '@nextui-org/react'
 import Head from 'next/head'
 import Router, { useRouter } from 'next/router';
-import styles from './enroll.module.css'
-
-
+import styles from '../enroll-course-page/enroll-course.module.css';
 import { Card } from "../api/data.json";
 
-export const getStaticProps = async () => {
-    return {
-        props: { cardData: Card },
-    };
-};
+// interface PostProps {
+//     posts: [];
+//   }
 
+interface Post {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+}
 
 export default function Enrollcourse({ cardData }) {
     const card = cardData.title; console.log(cardData);
@@ -25,6 +27,7 @@ export default function Enrollcourse({ cardData }) {
             ))
         };
     }
+
     const router = useRouter();
     const data = router?.query;
     console.log(router);
@@ -146,6 +149,32 @@ export default function Enrollcourse({ cardData }) {
 
     }
 }
+
+export const getStaticProps = async () => {
+    return {
+        props: { cardData: Card },
+    };
+};
+
+export async function getStaticPath() {
+
+    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/1`);
+    const data = await response.json();
+
+    const paths = data?.map((post: Post) => {
+        return {
+            params: { pid: `${post.id}` },
+        };
+    });
+
+    // const pathsData = paths.splice(0, 30);
+
+    return {
+        paths,
+        fallback: true,
+    };
+}
+
 // export async function getServerSideProps(context: any) {
 //     const res = await fetch('https://api.github.com/repos/vercel/next.js')
 //     const json = await res.json()

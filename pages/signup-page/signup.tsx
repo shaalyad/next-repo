@@ -1,8 +1,7 @@
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik';
 import Router, { useRouter } from 'next/router';
+import styles from '../signup-page/signup.module.css';
 
-
-import styles from './signup.module.css'
 interface Values {
     username: string;
     password: string;
@@ -25,10 +24,10 @@ export default function Signup() {
                     validate={values => {
                         const errors: any = {}
                         if (!values.username) {
-                            errors.username = 'Required username'
+                            errors.username = 'Username is required'
                         }
                         if (!values.password) {
-                            errors.password = 'Required password'
+                            errors.password = 'Password is required'
                         }
                         return errors
                     }}
@@ -44,13 +43,13 @@ export default function Signup() {
                         console.log(values)
                         router.push(
                             {
-                                pathname: '/home',
+                                pathname: '/',
                                 query: { username: values?.username },
                             },
                             undefined,
                             { shallow: true }
                         );
-                       
+
                     }}
 
                 >
@@ -58,11 +57,14 @@ export default function Signup() {
                     {({ isSubmitting }) => (
                         <Form>
                             <div className={styles.login_form_field1}>
-                                <Field required className={styles.field1 + ' form-control'} id="username" name="username" placeholder="Username" aria-describedby="usernameHelp" />
+                                <Field type="text" required className={styles.field1 + ' form-control'} id="username" name="username" placeholder="Username" aria-describedby="usernameHelp" />
+                                <ErrorMessage name="username" component="div" className={styles.error} ></ErrorMessage>
+
                             </div>
 
                             <div className={styles.login_form_field2}>
                                 <Field required className={styles.field2 + ' form-control'} id="password" name="password" placeholder="Password" type="password" />
+                                <ErrorMessage name="password" component="div" className={styles.error} ></ErrorMessage>
                             </div>
 
                             <div className={styles.login_form_field2}>

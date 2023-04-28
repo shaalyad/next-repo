@@ -1,5 +1,5 @@
-import { Formik, Field, Form, FormikHelpers } from 'formik';
-import styles from './login.module.css'
+import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik';
+import styles from '../login-page/login.module.css';
 import { Button } from '@nextui-org/react';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
@@ -23,15 +23,17 @@ export default function Login() {
           }}
 
           validate={values => {
-            const errors: any = {}
+            const errors: any = {};
+        
             if (!values.username) {
-              errors.username = 'Required username'
+              errors.username = 'Username is required'
             }
             if (!values.password) {
-              errors.password = 'Required password'
+              errors.password = 'Password is required'
             }
             return errors
           }}
+
 
           onSubmit={(
             values: Values,
@@ -44,7 +46,7 @@ export default function Login() {
             console.log(values)
             router.push(
               {
-                pathname: '/home',
+                pathname: '/',
                 query: { username: values.username },
               },
               undefined,
@@ -58,16 +60,18 @@ export default function Login() {
           {({ isSubmitting }) => (
             <Form>
               <div className={styles.login_form_field1}>
-                <Field className={styles.field1 + ' form-control'} id="username" name="username" placeholder="Username" aria-describedby="usernameHelp"
+                <Field type="text" className={styles.field1 + ' form-control'} id="username" name="username" placeholder="Username" aria-describedby="usernameHelp"
                   required />
+                <ErrorMessage name="username" component="div" className={styles.error} ></ErrorMessage>
               </div>
 
               <div className={styles.login_form_field2}>
-                <Field required className={styles.field2 + ' form-control'} id="password" name="password" placeholder="Password" type="password" />
+                <Field type="password" required className={styles.field2 + ' form-control'} id="password" name="password" placeholder="Password" type="password" />
+                <ErrorMessage name="password" component="div" className={styles.error} ></ErrorMessage>
               </div>
 
               <button disabled={isSubmitting} className={styles.login_btn + ' btn btn-primary'} type="submit">Login</button>
-              <Link href="/components/signup">
+              <Link href="signup-page/signup">
                 <button className={styles.signup_btn + ' btn btn-primary'}>
                   Sign Up
                 </button>

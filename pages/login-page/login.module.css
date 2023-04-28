@@ -5,7 +5,8 @@
     text-align: center;
     height: 100vh;
 }
-.login_heading{
+
+.login_heading {
     margin-top: 50%;
     color: black;
 }
@@ -22,7 +23,7 @@
 }
 
 .login_form_field1 {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .field1 {
@@ -30,7 +31,7 @@
 }
 
 .login_form_field2 {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 
@@ -41,5 +42,23 @@
 
 .login_btn {
     padding: 10px;
+    margin-bottom: 50px;
+    width: 150px;
+    background-color: black;
+    margin-right: 20px;
+}
+
+
+.signup_btn {
+    padding: 10px;
     margin-bottom: 20px;
+    width: 150px;
+    color: black;
+    background-color: white;
+}
+.error {
+    color: red;
+    text-align: start;
+    margin-left: 110px;
+    margin-top: 10px;
 }
